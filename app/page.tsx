@@ -276,6 +276,12 @@ export default function Game() {
 
   return (
     <div className="min-h-screen bg-stone-900 text-stone-100 font-sans flex flex-col overflow-x-hidden">
+      {/* OVERLAY OBBLIGO ROTAZIONE (Solo su mobile in verticale) */}
+      <div className="fixed inset-0 z-[999] bg-stone-950 flex flex-col items-center justify-center p-6 text-center portrait:flex landscape:hidden md:!hidden">
+        <div className="text-7xl mb-6 animate-bounce">📱</div>
+        <h2 className="text-3xl font-black text-emerald-400 mb-4 tracking-tight">RUOTA IL TELEFONO</h2>
+        <p className="text-stone-300 text-lg">Per esplorare la mappa e giocare correttamente, ruota il dispositivo in orizzontale (Landscape).</p>
+      </div>
       {/* Header / HUD */}
       <header className="bg-stone-800 p-2 md:p-4 shadow-md flex flex-col gap-4 z-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
@@ -515,7 +521,7 @@ export default function Game() {
 
       {/* Modal for Day 1 Event */}
       {isModalOpen && giornoCorrente === 1 && gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -570,7 +576,7 @@ export default function Game() {
 
       {/* Modal for Day 2 Event */}
       {isModalOpen && giornoCorrente === 2 && gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -625,7 +631,7 @@ export default function Game() {
 
       {/* Modal for Day 3 Event */}
       {isModalOpen && giornoCorrente === 3 && gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -680,7 +686,7 @@ export default function Game() {
 
       {/* Modal for Day 4 Event */}
       {isModalOpen && giornoCorrente === 4 && gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -740,7 +746,7 @@ export default function Game() {
 
       {/* Modal for Day 5 Event */}
       {isModalOpen && giornoCorrente === 5 && gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -795,7 +801,7 @@ export default function Game() {
 
       {/* Modal for Day 6 Event */}
       {isModalOpen && giornoCorrente === 6 && gameStarted && !isGameOver && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -850,7 +856,7 @@ export default function Game() {
 
       {/* Modal for Day 7 Event */}
       {isModalOpen && giornoCorrente === 7 && gameStarted && !isGameOver && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -917,7 +923,7 @@ export default function Game() {
 
       {/* Daily Report Modal */}
       {dailyReport && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/80 backdrop-blur-sm overflow-y-auto">
           <div className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-slate-800 bg-slate-800/50">
               <h2 className="text-2xl font-bold text-blue-400 tracking-wide uppercase text-center">Report Giornaliero</h2>
@@ -978,7 +984,7 @@ export default function Game() {
 
       {/* Game Over Screen */}
       {isGameOver && !showDebriefing && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-md overflow-y-auto">
+        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/95 backdrop-blur-md overflow-y-auto">
           <div className="bg-stone-900 border border-stone-700 rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in duration-500">
             <div className="p-8 text-center border-b border-stone-800">
               <h1 className={`text-4xl font-black tracking-tight mb-4 ${getGameOverResult().color}`}>
@@ -1018,7 +1024,7 @@ export default function Game() {
 
       {/* Debriefing Screen */}
       {isGameOver && showDebriefing && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-md overflow-y-auto">
+        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/95 backdrop-blur-md overflow-y-auto">
           <div className="bg-stone-900 border border-stone-700 rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden animate-in fade-in zoom-in duration-500 my-8">
             <div className="p-8 border-b border-stone-800 bg-stone-800/50">
               <h1 className="text-3xl font-black text-white tracking-tight flex items-center gap-3">
@@ -1094,7 +1100,7 @@ export default function Game() {
 
       {/* Onboarding Overlay */}
       {!gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/80 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-900 border border-stone-700 rounded-3xl shadow-2xl w-full max-w-4xl overflow-hidden animate-in fade-in zoom-in duration-300 flex flex-col max-h-[95vh]">
             <div className="p-8 md:p-10 overflow-y-auto">
               <div className="text-center mb-10">
