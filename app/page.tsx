@@ -275,14 +275,14 @@ export default function Game() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-900 text-stone-100 font-sans flex flex-col">
+    <div className="min-h-screen bg-stone-900 text-stone-100 font-sans flex flex-col overflow-x-hidden">
       {/* Header / HUD */}
-      <header className="bg-stone-800 p-4 shadow-md flex flex-col gap-4 z-10">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <h1 className="text-xl font-bold text-emerald-400">ARPA - Bosco del Flascio</h1>
+      <header className="bg-stone-800 p-2 md:p-4 shadow-md flex flex-col gap-4 z-10">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
+          <div className="flex items-center gap-2 text-center">
+            <h1 className="text-xl md:text-2xl font-bold text-emerald-400">ARPA - Bosco del Flascio</h1>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4">
             <div className="flex items-center gap-2 bg-stone-700 px-3 py-1.5 rounded-lg">
               <Calendar className="w-5 h-5 text-blue-400" />
               <span className="font-mono font-medium uppercase">Giorno {giornoCorrente} di 7</span>
@@ -346,13 +346,9 @@ export default function Game() {
 
       {/* Main Game Area - Map */}
       <main className="flex-1 relative overflow-hidden bg-stone-950 flex items-center justify-center p-4">
-        <div className="relative w-full max-w-5xl aspect-[4/3] rounded-xl overflow-hidden shadow-2xl border-4 border-stone-800 bg-stone-900">
+        <div className="relative w-full max-w-5xl rounded-xl overflow-hidden shadow-2xl border-2 md:border-4 border-stone-800 bg-stone-900">
           {/* Map Background */}
-          <img 
-            src="https://i.postimg.cc/66kDhfq2/Mappa_Bosco.png" 
-            alt="Mappa Bosco del Flascio" 
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+          <img src="https://i.postimg.cc/66kDhfq2/Mappa_Bosco.png" alt="Mappa Bosco del Flascio" className="w-full h-auto block" />
 
           {/* Level 1: Static Species Tokens */}
           {petagnaeaViva && (
