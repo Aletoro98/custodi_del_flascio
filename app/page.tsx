@@ -951,8 +951,8 @@ export default function Game() {
 
 {/* Scheda Tecnica (Bio Sheet) Modal */}
       {activeBioSheet && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div className="bg-stone-900 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-200">
+        <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 py-8 bg-black/80 backdrop-blur-sm overflow-y-auto overscroll-none">
+          <div className="bg-stone-900 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-md my-auto flex-shrink-0 animate-in fade-in zoom-in duration-200 relative">
             <div className="p-4 border-b border-stone-700 flex justify-between items-center bg-stone-800/50">
               <h3 className="text-xl font-bold text-emerald-500 flex items-center gap-2">
                 <span>📂</span> DATABASE NATURA 2000
