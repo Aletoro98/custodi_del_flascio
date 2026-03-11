@@ -11,6 +11,7 @@ export default function Game() {
   const [gameStarted, setGameStarted] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [showDebriefing, setShowDebriefing] = useState(false);
+  const [activeBioSheet, setActiveBioSheet] = useState<string | null>(null);
 
   // Biodiversity State
   const [petagnaeaViva, setPetagnaeaViva] = useState(true);
@@ -356,43 +357,70 @@ export default function Game() {
           {/* Map Background */}
           <img src="https://i.postimg.cc/66kDhfq2/Mappa_Bosco.png" alt="Mappa Bosco del Flascio" className="w-full h-auto block" />
 
-          {/* Level 1: Static Species Tokens */}
-          {petagnaeaViva && (
-            <div className="absolute top-[45%] left-[55%] w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 transition-opacity">
+         {/* Level 1: Static Species Tokens (Cliccabili) */}
+          <button 
+            onClick={() => setActiveBioSheet('petagnaea')}
+            className="absolute top-[45%] left-[55%] w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer hover:scale-110 transition-transform"
+            title="Petagnaea gussonei"
+          >
+            {petagnaeaViva ? (
               <img 
                 src="https://i.postimg.cc/44Dr1Qy4/Token_Petagnaea_Scontornato.png" 
                 alt="Petagnaea" 
                 className="w-full h-full object-contain drop-shadow-lg"
               />
-            </div>
-          )}
-          {emysViva && (
-            <div className="absolute top-[62%] left-[36%] w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 transition-opacity">
+            ) : (
+              <div className="w-14 h-14 mx-auto flex items-center justify-center text-4xl bg-stone-900/80 border-2 border-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.6)]">🥀</div>
+            )}
+          </button>
+
+          <button 
+            onClick={() => setActiveBioSheet('emys')}
+            className="absolute top-[62%] left-[36%] w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer hover:scale-110 transition-transform"
+            title="Emys trinacris"
+          >
+            {emysViva ? (
               <img 
                 src="https://i.postimg.cc/cLqqhy16/Token_Tartaruga_Scontornato.png" 
                 alt="Emys trinacris" 
                 className="w-full h-full object-contain drop-shadow-lg"
               />
-            </div>
-          )}
-          {rhinolophusVivo && (
-            <div className="absolute top-[21%] left-[12%] w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 transition-opacity">
+            ) : (
+              <div className="w-14 h-14 mx-auto flex items-center justify-center text-4xl bg-stone-900/80 border-2 border-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.6)]">🦴</div>
+            )}
+          </button>
+
+          <button 
+            onClick={() => setActiveBioSheet('rhinolophus')}
+            className="absolute top-[21%] left-[17%] w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer hover:scale-110 transition-transform"
+            title="Rhinolophus ferrumequinum"
+          >
+            {rhinolophusVivo ? (
               <img 
                 src="https://i.postimg.cc/VkcQjFhG/Token_Pipistrello_Scontornata.png" 
                 alt="Rhinolophus ferrumequinum" 
                 className="w-full h-full object-contain drop-shadow-lg"
               />
-            </div>
-          )}
-          {euplagiaViva && (
-            <div className="absolute top-[25%] left-[68%] w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 transition-opacity">
+            ) : (
+              <div className="w-14 h-14 mx-auto flex items-center justify-center text-4xl bg-stone-900/80 border-2 border-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.6)]">🚫</div>
+            )}
+          </button>
+
+          <button 
+            onClick={() => setActiveBioSheet('euplagia')}
+            className="absolute top-[25%] left-[68%] w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer hover:scale-110 transition-transform"
+            title="Euplagia quadripunctaria"
+          >
+            {euplagiaViva ? (
               <img 
                 src="https://i.postimg.cc/vTgFv2Mv/Token_Farfalla_Scontornata.png" 
                 alt="Euplagia quadripunctaria" 
                 className="w-full h-full object-contain drop-shadow-lg"
               />
-            </div>
-          )}
+            ) : (
+              <div className="w-14 h-14 mx-auto flex items-center justify-center text-4xl bg-stone-900/80 border-2 border-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.6)]">🌪️</div>
+            )}
+          </button>
 
           {/* Level 2: Dynamic Threats */}
           {giornoCorrente === 1 && (
@@ -477,7 +505,7 @@ export default function Game() {
 
           {giornoCorrente === 6 && (
             <div 
-              className="absolute top-[21%] left-[18%] w-20 h-20 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer animate-bounce hover:scale-110 transition-transform"
+              className="absolute top-[21%] left-[23%] w-20 h-20 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer animate-bounce hover:scale-110 transition-transform"
               onClick={() => setIsModalOpen(true)}
             >
               <img 
@@ -521,7 +549,7 @@ export default function Game() {
 
       {/* Modal for Day 1 Event */}
       {isModalOpen && giornoCorrente === 1 && gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -576,7 +604,7 @@ export default function Game() {
 
       {/* Modal for Day 2 Event */}
       {isModalOpen && giornoCorrente === 2 && gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -631,7 +659,7 @@ export default function Game() {
 
       {/* Modal for Day 3 Event */}
       {isModalOpen && giornoCorrente === 3 && gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -686,7 +714,7 @@ export default function Game() {
 
       {/* Modal for Day 4 Event */}
       {isModalOpen && giornoCorrente === 4 && gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -746,7 +774,7 @@ export default function Game() {
 
       {/* Modal for Day 5 Event */}
       {isModalOpen && giornoCorrente === 5 && gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -801,7 +829,7 @@ export default function Game() {
 
       {/* Modal for Day 6 Event */}
       {isModalOpen && giornoCorrente === 6 && gameStarted && !isGameOver && (
-        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -856,7 +884,7 @@ export default function Game() {
 
       {/* Modal for Day 7 Event */}
       {isModalOpen && giornoCorrente === 7 && gameStarted && !isGameOver && (
-        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-800 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-stone-700 flex justify-between items-start bg-stone-800/50">
               <div>
@@ -921,9 +949,131 @@ export default function Game() {
         </div>
       )}
 
+{/* Scheda Tecnica (Bio Sheet) Modal */}
+      {activeBioSheet && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="bg-stone-900 border border-stone-700 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div className="p-4 border-b border-stone-700 flex justify-between items-center bg-stone-800/50">
+              <h3 className="text-xl font-bold text-emerald-500 flex items-center gap-2">
+                <span>📂</span> DATABASE NATURA 2000
+              </h3>
+              <button onClick={() => setActiveBioSheet(null)} className="text-stone-400 hover:text-white transition-colors">
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            
+            <div className="p-6">
+              {/* PETAGNAEA */}
+              {activeBioSheet === 'petagnaea' && (
+                petagnaeaViva ? (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-2xl font-black text-emerald-400 italic">Petagnaea gussonei</span>
+                      <span className="text-xs font-bold px-2 py-1 bg-emerald-900/50 text-emerald-400 border border-emerald-500 rounded-full">COD. 6950</span>
+                    </div>
+                    <img src="https://top50.iucn-mpsg.org/uploads/species/38/images/m_134_2017-04-26-120950_petagnaea-gussonei.JPG" alt="Petagnaea" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
+                    <p className="text-stone-300 text-sm leading-relaxed">
+                      Pianta rarissima, relitto del Terziario. Vive esclusivamente in poche zone umide dei monti Nebrodi. Ha un rischio di estinzione altissimo.
+                    </p>
+                    <div className="bg-stone-950/50 border border-stone-600 p-3 rounded-lg mt-4">
+                      <span className="block text-xs font-bold text-emerald-500 mb-1">💡 APPUNTO DEL BIOLOGO:</span>
+                      <span className="text-sm text-stone-300">Il "rooting" (grufolamento) dei suini allo stato brado distrugge le stazioni di questa pianta. Le sole recinzioni rinforzate possono tenerli fuori e salvarla.</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-6">
+                    <div className="text-6xl mb-4">🥀</div>
+                    <h3 className="text-xl font-bold text-red-500 mb-2">SPECIE ESTINTA</h3>
+                    <p className="text-stone-400">Habitat distrutto a causa del calpestio dei suidi. Specie non più studiabile.</p>
+                  </div>
+                )
+              )}
+
+              {/* EMYS */}
+              {activeBioSheet === 'emys' && (
+                emysViva ? (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-2xl font-black text-emerald-400 italic">Emys trinacris</span>
+                      <span className="text-xs font-bold px-2 py-1 bg-emerald-900/50 text-emerald-400 border border-emerald-500 rounded-full">COD. 5370</span>
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Emys_trinacris_geloi_wetland.jpg/1280px-Emys_trinacris_geloi_wetland.jpg" alt="Emys trinacris" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
+                    <p className="text-stone-300 text-sm leading-relaxed">
+                      Testuggine palustre endemica della Sicilia. Specie timida che frequenta laghetti e fiumi a lento scorrimento.
+                    </p>
+                    <div className="bg-stone-950/50 border border-stone-600 p-3 rounded-lg mt-4">
+                      <span className="block text-xs font-bold text-emerald-500 mb-1">💡 APPUNTO DEL BIOLOGO:</span>
+                      <span className="text-sm text-stone-300">È altamente minacciata dal prelievo illegale tramite nasse sommerse. Pattugliamenti severi da parte delle guardie sono cruciali per contrastare questo bracconaggio.</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-6">
+                    <div className="text-6xl mb-4">🦴</div>
+                    <h3 className="text-xl font-bold text-red-500 mb-2">POPOLAZIONE PERSA</h3>
+                    <p className="text-stone-400">Esemplari catturati illegalmente. Scheda biologica chiusa.</p>
+                  </div>
+                )
+              )}
+
+              {/* EUPLAGIA */}
+              {activeBioSheet === 'euplagia' && (
+                euplagiaViva ? (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-2xl font-black text-emerald-400 italic">Euplagia quadripunctaria</span>
+                      <span className="text-xs font-bold px-2 py-1 bg-emerald-900/50 text-emerald-400 border border-emerald-500 rounded-full">COD. 6199</span>
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Russischer_B%C3%A4r_%28Euplagia_quadripunctaria%29-20180805-RM-112757.jpg/1280px-Russischer_B%C3%A4r_%28Euplagia_quadripunctaria%29-20180805-RM-112757.jpg" alt="Euplagia" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
+                    <p className="text-stone-300 text-sm leading-relaxed">
+                      Conosciuta come "Falena dell'Edera", è un importante indicatore biologico per gli ambienti ripariali e i corsi d'acqua puliti.
+                    </p>
+                    <div className="bg-stone-950/50 border border-stone-600 p-3 rounded-lg mt-4">
+                      <span className="block text-xs font-bold text-emerald-500 mb-1">💡 APPUNTO DEL BIOLOGO:</span>
+                      <span className="text-sm text-stone-300">Qualsiasi intervento aggressivo con ruspe sugli argini distruggerebbe il suo habitat. È fondamentale imporre tagli manuali e selettivi della vegetazione.</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-6">
+                    <div className="text-6xl mb-4">🌪️</div>
+                    <h3 className="text-xl font-bold text-red-500 mb-2">HABITAT DISTRUTTO</h3>
+                    <p className="text-stone-400">Specie sradicata da interventi meccanici invasivi sugli argini.</p>
+                  </div>
+                )
+              )}
+
+              {/* RHINOLOPHUS */}
+              {activeBioSheet === 'rhinolophus' && (
+                rhinolophusVivo ? (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-2xl font-black text-emerald-400 italic">Rhinolophus f.</span>
+                      <span className="text-xs font-bold px-2 py-1 bg-emerald-900/50 text-emerald-400 border border-emerald-500 rounded-full">COD. 1304</span>
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Gro%C3%9Fe_Hufeisennase_%28Rhinolophus_ferrumequinum%29_1.jpg/1280px-Gro%C3%9Fe_Hufeisennase_%28Rhinolophus_ferrumequinum%29_1.jpg" alt="Rhinolophus" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
+                    <p className="text-stone-300 text-sm leading-relaxed">
+                      Il pipistrello "Ferro di cavallo maggiore" è in forte declino. Le colonie riproduttive vivono in grotte naturali completamente buie e isolate.
+                    </p>
+                    <div className="bg-stone-950/50 border border-stone-600 p-3 rounded-lg mt-4">
+                      <span className="block text-xs font-bold text-emerald-500 mb-1">💡 APPUNTO DEL BIOLOGO:</span>
+                      <span className="text-sm text-stone-300">Questa specie è estremamente sensibile alla luce e al rumore. Autorizzare visite turistiche nelle grotte causerà l'abbandono immediato della colonia.</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-6">
+                    <div className="text-6xl mb-4">🚫</div>
+                    <h3 className="text-xl font-bold text-red-500 mb-2">COLONIA FUGGITA</h3>
+                    <p className="text-stone-400">Disturbo antropico intollerabile. Grotte abbandonate.</p>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Daily Report Modal */}
       {dailyReport && (
-        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/80 backdrop-blur-sm overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/80 backdrop-blur-sm overflow-y-auto">
           <div className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6 border-b border-slate-800 bg-slate-800/50">
               <h2 className="text-2xl font-bold text-blue-400 tracking-wide uppercase text-center">Report Giornaliero</h2>
@@ -984,7 +1134,7 @@ export default function Game() {
 
       {/* Game Over Screen */}
       {isGameOver && !showDebriefing && (
-        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/95 backdrop-blur-md overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/95 backdrop-blur-md overflow-y-auto">
           <div className="bg-stone-900 border border-stone-700 rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in duration-500">
             <div className="p-8 text-center border-b border-stone-800">
               <h1 className={`text-4xl font-black tracking-tight mb-4 ${getGameOverResult().color}`}>
@@ -1024,7 +1174,7 @@ export default function Game() {
 
       {/* Debriefing Screen */}
       {isGameOver && showDebriefing && (
-        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/95 backdrop-blur-md overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/95 backdrop-blur-md overflow-y-auto">
           <div className="bg-stone-900 border border-stone-700 rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden animate-in fade-in zoom-in duration-500 my-8">
             <div className="p-8 border-b border-stone-800 bg-stone-800/50">
               <h1 className="text-3xl font-black text-white tracking-tight flex items-center gap-3">
@@ -1100,7 +1250,7 @@ export default function Game() {
 
       {/* Onboarding Overlay */}
       {!gameStarted && (
-        <div className="absolute inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/80 backdrop-blur-sm overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 md:py-8 bg-black/80 backdrop-blur-sm overflow-y-auto">
           <div className="bg-stone-900 border border-stone-700 rounded-3xl shadow-2xl w-full max-w-4xl overflow-hidden animate-in fade-in zoom-in duration-300 flex flex-col max-h-[95vh]">
             <div className="p-8 md:p-10 overflow-y-auto">
               <div className="text-center mb-10">
