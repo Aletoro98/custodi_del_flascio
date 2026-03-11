@@ -2,19 +2,19 @@ import type {Metadata} from 'next';
 import './globals.css'; // Global styles
 
 export const metadata: Metadata = {
-  title: "Custodi del Plemmirio",
-  description: "Simulatore Gestionale sulla Biodiversità - Stanza del Mare",
+  title: "Custodi del Flascio",
+  description: "Simulatore Gestionale sulla Biodiversità - Rete Natura 2000",
   openGraph: {
-    title: "🌊 Custodi del Plemmirio - Gioca Ora",
-    description: "Mettiti alla prova come Direttore dell'Area Marina Protetta. Riuscirai a salvare le specie in via di estinzione senza finire in bancarotta?",
-    url: "https://custodi-del-flascio.vercel.app/", 
-    siteName: "Custodi del Plemmirio",
+    title: "🌲 Custodi del Flascio - Gioca Ora",
+    description: "Mettiti alla prova come Direttore della Riserva. Riuscirai a salvare la Petagnaea e l'ecosistema boschivo senza far fallire l'Ente?",
+    url: "https://custodi-del-flascio.vercel.app/",
+    siteName: "Custodi del Flascio",
     images: [
       {
-        url: "/mappa-mare.png", // Usa l'immagine della mappa come copertina!
+        url: "https://i.postimg.cc/66kDhfq2/Mappa_Bosco.png", 
         width: 1200,
         height: 630,
-        alt: "Mappa del Plemmirio",
+        alt: "Mappa del Bosco del Flascio",
       },
     ],
     locale: "it_IT",
