@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     siteName: "Custodi del Flascio",
     images: [
       {
-        url: "https://i.postimg.cc/66kDhfq2/Mappa_Bosco.png", 
+        url: "https://custodi-del-flascio.vercel.app/Mappa_Bosco.png", 
         width: 1200,
         height: 630,
         alt: "Mappa del Bosco del Flascio",

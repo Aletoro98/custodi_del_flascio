@@ -12,6 +12,8 @@ export default function Game() {
   const [isGameOver, setIsGameOver] = useState(false);
   const [showDebriefing, setShowDebriefing] = useState(false);
   const [activeBioSheet, setActiveBioSheet] = useState<string | null>(null);
+  // Gestione del Tutorial
+  const [tutorialStep, setTutorialStep] = useState(1); // 1, 2, 3 sono i passaggi. 0 significa tutorial chiuso.
 
   // Biodiversity State
   const [petagnaeaViva, setPetagnaeaViva] = useState(true);
@@ -33,7 +35,7 @@ export default function Game() {
       setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev - 5)));
       setPetagnaeaViva(false);
       setDailyReport({
-        text: "Hai scelto la via del risparmio. I maiali sono scappati sul momento, ma sono tornati la notte stessa. Le stazioni di Petagnaea sono state devastate dal calpestio. La popolazione è compromessa.",
+        text: "Hai scelto la via del risparmio. I maiali sono scappati sul momento, ma sono tornati la notte stessa. Le stazioni di Petagnaea sono state devastate dal loro passaggio. La popolazione è compromessa.",
         impacts: [
           "🥀 Biodiversità: Petagnaea distrutta!",
           "📉 Salute Bosco: -5%",
@@ -89,7 +91,7 @@ export default function Game() {
       setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev - 10)));
       setEuplagiaViva(false);
       setDailyReport({
-        text: "Le ruspe hanno rasato tutto a zero. L'acqua scorrerà veloce, ma hai distrutto il corridoio ecologico. Non si vedono più farfalle in volo. La biodiversità ha subito un duro colpo.",
+        text: "Le ruspe hanno rasato tutto a zero. L'acqua scorrerà veloce, ma hai distrutto il corridoio ecologico, la 'strada verde' naturale che permetteva alla fauna di spostarsi e sopravvivere. Non si vedono più farfalle in volo. La biodiversità ha subito un duro colpo.",
         impacts: [
           "📉 Salute Bosco: -10% (Habitat perso)"
         ]
@@ -99,7 +101,7 @@ export default function Game() {
       setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev + 8)));
       setEuplagiaViva(true);
       setDailyReport({
-        text: "Hai vietato le ruspe e pagato squadre di operai per tagliare solo il secco a mano. La vegetazione ripariale è intatta. Di sera, osservi centinaia di Euplagia volare tra le foglie. Un successo per Natura 2000!",
+        text: "Hai vietato le ruspe e pagato squadre di operai per tagliare solo il secco a mano. La vegetazione ripariale, il fragile ecosistema che abbraccia il fiume, è intatta. Di sera, osservi centinaia di Euplagia volare tra le foglie. Un successo per Natura 2000!",
         impacts: [
           "🦋 Biodiversità: Habitat salvato!",
           "📈 Salute Bosco: +8%",
@@ -114,7 +116,7 @@ export default function Game() {
     if (choiceId === 1) {
       setBudget(prev => prev + 14500);
       setDailyReport({
-        text: `Hai accompagnato l'ispettore nei luoghi più impervi. Avete avvistato tracce fresche di gatto selvatico e fotografato ${petagnaeaViva ? "la fioritura della Petagnaea" : "i maestosi alberi secolari del bosco"}. L'ispettore è rimasto colpito. Il finanziamento è approvato!`,
+        text: `Hai accompagnato l'ispettore nei luoghi più affascinanti. Avete avvistato tracce fresche di gatto selvatico e fotografato ${petagnaeaViva ? "la fioritura della Petagnaea" : "i maestosi alberi secolari del bosco"}. L'ispettore è rimasto colpito. Il finanziamento è approvato!`,
         impacts: [
           "🌸 Biodiversità: Valorizzata!",
           "💰 Budget: + € 14.500 (Fondi UE sbloccati)"
@@ -146,7 +148,7 @@ export default function Game() {
       setBudget(prev => prev - 1000);
       setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev + 2)));
       setDailyReport({
-        text: "Hai schierato le pattuglie a ogni varco. Nessuno è entrato. Il bosco è rimasto silenzioso e incontaminato. È stata una scelta impopolare e costosa, ma necessaria per la tutela integrale.",
+        text: "Hai schierato le pattuglie a ogni varco. Nessuno è entrato. Il bosco è rimasto silenzioso e incontaminato. È stata una scelta impopolare e costosa, ma necessaria per la natura.",
         impacts: [
           "📈 Salute Bosco: +2%",
           "💸 Budget: - € 1.000 (Straordinari)"
@@ -162,7 +164,7 @@ export default function Game() {
       setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev - 15)));
       setRhinolophusVivo(false);
       setDailyReport({
-        text: "Hai installato i faretti. I turisti sono entusiasti e pagano il biglietto. Ma stasera, il sonar non rileva nessun segnale ultrasonico. La colonia di Rhinolophus, spaventata dalle luci, ha abbandonato il sito per sempre.",
+        text: "Hai installato i faretti. I turisti sono entusiasti e pagano il biglietto. Ma stasera, il sonar non rileva nessun segnale ultrasonico dei pipistrelli. La colonia di Rhinolophus, spaventata dalle luci, ha abbandonato il sito per sempre.",
         impacts: [
           "🦇 Biodiversità: Colonia persa!",
           "💰 Budget: + € 2.000 (Ticket)",
@@ -173,7 +175,7 @@ export default function Game() {
       setBudget(prev => prev - 3000);
       setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev + 10)));
       setDailyReport({
-        text: "Hai installato una cancellata speciale che permette il passaggio dei pipistrelli ma non delle persone. Hai spento ogni luce. Al tramonto, vedi i ferri di cavallo uscire a caccia. Il sito è sicuro.",
+        text: "Hai installato una cancellata speciale che permette il passaggio dei pipistrelli ma non delle persone. Hai spento ogni luce. Al tramonto, vedi i Rhinolophus uscire a caccia. Il sito è sicuro.",
         impacts: [
           "🦇 Biodiversità: Colonia protetta!",
           "📈 Salute Bosco: +10%",
@@ -283,73 +285,141 @@ export default function Game() {
         <h2 className="text-3xl font-black text-emerald-400 mb-4 tracking-tight">RUOTA IL TELEFONO</h2>
         <p className="text-stone-300 text-lg">Per esplorare la mappa e giocare correttamente, ruota il dispositivo in orizzontale (Landscape).</p>
       </div>
-      {/* Header / HUD */}
-      <header className="bg-stone-800 p-2 md:p-4 shadow-md flex flex-col gap-4 z-10">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
-          <div className="flex items-center gap-2 text-center">
-            <h1 className="text-xl md:text-2xl font-bold text-emerald-400">ARPA - Bosco del Flascio</h1>
-          </div>
-          <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-            <div className="flex items-center gap-2 bg-stone-700 px-3 py-1.5 rounded-lg">
-              <Calendar className="w-5 h-5 text-blue-400" />
-              <span className="font-mono font-medium uppercase">Giorno {giornoCorrente} di 7</span>
-            </div>
-            <div className={`flex items-center gap-2 bg-stone-700 px-3 py-1.5 rounded-lg ${budget < 0 ? 'text-red-500' : ''}`}>
-              <Coins className={`w-5 h-5 ${budget < 0 ? 'text-red-500' : 'text-yellow-400'}`} />
-              <span className="font-mono font-medium">{formatCurrency(budget)}</span>
-            </div>
-            <div className={`flex items-center gap-2 bg-stone-700 px-3 py-1.5 rounded-lg ${ecosistemaSalute < 40 ? 'text-red-500' : ''}`}>
-              <Heart className={`w-5 h-5 ${ecosistemaSalute < 40 ? 'text-red-500' : 'text-red-400'}`} />
-              <span className="font-mono font-medium">{ecosistemaSalute}%</span>
-            </div>
-            <div className="flex items-center gap-2 bg-stone-700 px-3 py-1.5 rounded-lg">
-              <span className="font-medium text-sm">
-                {budget < 21000 ? '⚠️ Fondi in esaurimento!' : '✅ Gestione operativa'}
-              </span>
-            </div>
-          </div>
-        </div>
 
-        {/* Biodiversity Panel */}
-        <div className="flex items-center gap-4 bg-stone-900/50 p-2 rounded-lg border border-stone-700">
-          <span className="text-sm font-semibold text-stone-400 uppercase tracking-wider">Biodiversità Protetta:</span>
-          <div className="flex gap-3">
+{/* HUD Fluttuante - Parametri Vitali e Biodiversità IN UN'UNICA RIGA */}
+      <div className="fixed top-2 left-0 right-0 z-[40] flex flex-col items-center px-2 pointer-events-none">
+        
+        {/* RIGA UNICA: Tutto insieme */}
+        <div className="flex flex-wrap justify-center items-center gap-2 pointer-events-auto">
+          
+          {/* Pillola Giorno */}
+          <div className="bg-stone-900/80 backdrop-blur-md border border-stone-600 px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 text-white">
+            <Calendar className="w-4 h-4 text-blue-400" />
+            <span className="font-bold text-sm">{giornoCorrente}/7</span>
+          </div>
+
+          {/* Pillola Budget */}
+          <div className={`backdrop-blur-md border px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 transition-colors ${budget < 21000 ? 'bg-red-900/90 border-red-500 text-red-100' : 'bg-stone-900/80 border-stone-600 text-white'}`}>
+            <Coins className={`w-4 h-4 ${budget < 21000 ? 'text-red-300' : 'text-yellow-400'}`} />
+            <span className="font-bold text-sm">{formatCurrency(budget)}</span>
+          </div>
+
+          {/* Pillola Salute Ecosistema */}
+          <div className={`backdrop-blur-md border px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 transition-colors ${ecosistemaSalute < 40 ? 'bg-red-900/90 border-red-500 text-red-100' : 'bg-stone-900/80 border-stone-600 text-white'}`}>
+            <Heart className={`w-4 h-4 ${ecosistemaSalute < 40 ? 'text-red-300' : 'text-emerald-400'}`} />
+            <span className="font-bold text-sm">{ecosistemaSalute}%</span>
+          </div>
+
+          {/* Pillola Biodiversità (le faccine) */}
+          <div className="bg-stone-900/80 backdrop-blur-md border border-stone-600 px-3 py-1.5 rounded-full shadow-lg flex items-center gap-2 text-white pointer-events-auto">
             <button 
-              onClick={() => setActiveBioInfo(petagnaeaViva ? 'Petagnaea gussonei - Rarissima pianta endemica' : 'Petagnaea gussonei - Estinta in questa zona')}
-              className="text-3xl hover:scale-110 transition-transform"
-              title="Petagnaea gussonei"
+              onClick={() => {
+                const testo = petagnaeaViva ? 'Petagnaea gussonei' : 'Petagnaea - Estinta';
+                setActiveBioInfo(activeBioInfo === testo ? null : testo);
+              }} 
+              className="text-lg hover:scale-110 transition-transform"
             >
               {petagnaeaViva ? '🌸' : '🥀'}
             </button>
+
             <button 
-              onClick={() => setActiveBioInfo(emysViva ? 'Emys trinacris - Testuggine palustre siciliana' : 'Emys trinacris - Estinta in questa zona')}
-              className="text-3xl hover:scale-110 transition-transform"
-              title="Emys trinacris"
+              onClick={() => {
+                const testo = emysViva ? 'Emys trinacris' : 'Emys - Estinta';
+                setActiveBioInfo(activeBioInfo === testo ? null : testo);
+              }} 
+              className="text-lg hover:scale-110 transition-transform"
             >
               {emysViva ? '🐢' : '🦴'}
             </button>
+
             <button 
-              onClick={() => setActiveBioInfo(euplagiaViva ? 'Euplagia quadripunctaria - Falena dell\'Edera' : 'Euplagia quadripunctaria - Estinta in questa zona')}
-              className="text-3xl hover:scale-110 transition-transform"
-              title="Euplagia quadripunctaria"
+              onClick={() => {
+                const testo = euplagiaViva ? 'Euplagia quadripunctaria' : 'Euplagia - Estinta';
+                setActiveBioInfo(activeBioInfo === testo ? null : testo);
+              }} 
+              className="text-lg hover:scale-110 transition-transform"
             >
               {euplagiaViva ? '🦋' : '🌪️'}
             </button>
+
             <button 
-              onClick={() => setActiveBioInfo(rhinolophusVivo ? 'Rhinolophus ferrumequinum - Pipistrello raro' : 'Rhinolophus ferrumequinum - Estinto in questa zona')}
-              className="text-3xl hover:scale-110 transition-transform"
-              title="Rhinolophus ferrumequinum"
+              onClick={() => {
+                const testo = rhinolophusVivo ? 'Rhinolophus ferrumequinum' : 'Rhinolophus - Estinto';
+                setActiveBioInfo(activeBioInfo === testo ? null : testo);
+              }} 
+              className="text-lg hover:scale-110 transition-transform"
             >
               {rhinolophusVivo ? '🦇' : '🚫'}
             </button>
           </div>
-          {activeBioInfo && (
-            <div className="ml-4 px-4 py-2 bg-stone-800 border border-stone-600 rounded-md text-sm text-stone-200 animate-in fade-in slide-in-from-left-2">
-              {activeBioInfo}
+
+        </div> {/* Fine della RIGA UNICA */}
+
+        {/* Messaggio a comparsa per le info sulla biodiversità */}
+        {activeBioInfo && (
+          <div className="bg-stone-800/90 backdrop-blur-sm border border-stone-600 px-3 py-1 mt-2 rounded-full text-xs text-stone-200 animate-in fade-in slide-in-from-top-2 pointer-events-auto shadow-lg">
+            {activeBioInfo}
+          </div>
+        )}
+
+        {/* OVERLAY TUTORIAL (Visibile solo se tutorialStep è maggiore di 0) */}
+      {tutorialStep > 0 && (
+        <div className="fixed inset-0 z-[99999] flex justify-center pointer-events-auto transition-opacity duration-300">
+          
+         {/* Tasto "Salta Tutorial" visibile e staccato dalla barra */}
+          <button 
+            onClick={() => setTutorialStep(0)} 
+            className="absolute top-20 right-4 bg-stone-900/80 backdrop-blur-md text-white px-3 py-1.5 rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-transform border border-stone-600"
+          >
+            Salta Tutorial ✖
+          </button>
+
+          {/* STEP 1: La Plancia di Comando (punta in alto) */}
+          {tutorialStep === 1 && (
+            <div className="absolute top-24 md:top-28 flex flex-col items-center animate-in fade-in zoom-in duration-300 px-4">
+              <div className="text-4xl animate-bounce mb-2 drop-shadow-lg">⬆️</div>
+              <div className="bg-stone-100 text-stone-900 p-4 rounded-xl max-w-sm text-center shadow-2xl border-b-4 border-emerald-600">
+                <h3 className="font-bold text-lg text-emerald-700 mb-2">1. La tua Plancia di Comando</h3>
+                <p className="text-sm mb-4 font-medium">Tieni d'occhio questi valori! Se i fondi (💶) o la salute dell'ecosistema (🌿) scendono a zero, la tua missione fallirà.</p>
+                <button onClick={() => setTutorialStep(2)} className="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg font-bold w-full transition-colors shadow-md">
+                  Avanti ➔
+                </button>
+              </div>
             </div>
           )}
+
+          {/* STEP 2: Le Info (punta al centro/basso) */}
+          {tutorialStep === 2 && (
+            <div className="absolute top-1/2 -translate-y-1/2 flex flex-col items-center animate-in fade-in zoom-in duration-300 px-4">
+              <div className="bg-stone-100 text-stone-900 p-4 rounded-xl max-w-sm text-center shadow-2xl border-b-4 border-blue-600">
+                <h3 className="font-bold text-lg text-blue-700 mb-2">2. Esplora e Impara</h3>
+                <p className="text-sm mb-4 font-medium">Sulla mappa troverai icone fisse (come le info sulle specie). Toccale per aprire il Database ARPA e studiare l'ambiente prima di agire.</p>
+                <button onClick={() => setTutorialStep(3)} className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-bold w-full transition-colors shadow-md">
+                  Avanti ➔
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* STEP 3: L'Emergenza (senza freccia) */}
+          {tutorialStep === 3 && (
+            <div className="absolute bottom-16 md:bottom-24 flex flex-col items-center animate-in fade-in zoom-in duration-300 px-4">
+              <div className="bg-stone-100 text-stone-900 p-4 rounded-xl max-w-sm text-center shadow-2xl border-b-4 border-red-600">
+                <h3 className="font-bold text-lg text-red-700 mb-2">3. Affronta le Emergenze</h3>
+                <p className="text-sm mb-4 font-medium">I gettoni rossi che rimbalzano sono le tue missioni attive. Toccali per prendere decisioni cruciali per la riserva.</p>
+                <button onClick={() => setTutorialStep(0)} className="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg font-bold w-full transition-colors shadow-md animate-pulse">
+                  Inizia a Giocare 🎮
+                </button>
+              </div>
+            </div>
+          )}
+
         </div>
-      </header>
+      )}
+
+      </div>
+
+      
 
       {/* Main Game Area - Map */}
       <main className="flex-1 relative overflow-hidden bg-stone-950 flex items-center justify-center p-4">
@@ -679,7 +749,7 @@ export default function Game() {
             
             <div className="p-6">
               <p className="text-stone-300 mb-6 leading-relaxed">
-                Sei lungo il torrente. È il periodo di volo dell&apos;<span className="text-emerald-400 font-semibold italic">Euplagia quadripunctaria</span> (Falena dell&apos;Edera), protetta dalla Direttiva Habitat. Gli ingegneri ti chiedono di &quot;ripulire&quot; gli argini con le ruspe. Quei rovi però sono l&apos;habitat essenziale per la falena.
+                Sei lungo il torrente. È il delicato periodo di volo dell'<span className="text-emerald-400 font-semibold italic">Euplagia quadripunctaria</span> (la rara Falena dell'Edera), rigorosamente protetta dalla Direttiva Habitat, la massima legge europea per la difesa della biodiversità. Gli ingegneri premono per 'ripulire' gli argini con le ruspe. Per loro è solo erba da tagliare, ma quell'intrico di rovi è il rifugio vitale dove questa falena vive e si riproduce.
               </p>
 
               <div className="space-y-3">
@@ -734,10 +804,10 @@ export default function Game() {
             
             <div className="p-6">
               <p className="text-stone-300 leading-relaxed">
-                Oggi è una giornata decisiva. Un ispettore della Commissione Europea è venuto a valutare lo stato di conservazione del sito. Se il report sarà positivo, il Parco riceverà i Fondi Strutturali.
+                Oggi è una giornata decisiva. Un ispettore della Commissione Europea è venuto a valutare lo stato di conservazione del sito, cioè la reale salute della nostra biodiversità. Se il report sarà positivo, il Parco riceverà i Fondi Strutturali, i finanziamenti vitali per pagare le spese e continuare a proteggere l'area.
               </p>
               {budget < 21000 ? (
-                <p className="text-orange-400 mt-2 mb-6 font-medium">Le casse del parco si stanno svuotando. Convincere l&apos;ispettore è l&apos;unico modo per ottenere la liquidità necessaria per le emergenze.</p>
+                <p className="text-orange-400 mt-2 mb-6 font-medium">Le casse del parco si stanno svuotando. Convincere l&apos;ispettore è l&apos;unico modo per ottenere i soldi necessari per le emergenze.</p>
               ) : (
                 <p className="text-emerald-400 mt-2 mb-6 font-medium">Hai ancora fondi, ma ottenere questo finanziamento garantirebbe la sicurezza economica del parco a lungo termine.</p>
               )}
@@ -750,7 +820,7 @@ export default function Game() {
                   <div className="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">Organizza un monitoraggio sul campo</div>
                   <div className="text-sm text-stone-400 mb-2">Mostra all&apos;ispettore la vera natura del parco.</div>
                   <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-yellow-400"><Coins className="w-4 h-4"/> -€ 500</span>
+                    <span className="flex items-center gap-1 text-yellow-400"><Coins className="w-4 h-4"/> -€ 500 (Alta probabilità di successo)</span>
                     <span className="flex items-center gap-1 text-stone-400"><Heart className="w-4 h-4"/> Invariata</span>
                   </div>
                 </button>
@@ -762,7 +832,7 @@ export default function Game() {
                   <div className="font-semibold text-white mb-1 group-hover:text-stone-300 transition-colors">Affidati ai vecchi dati d&apos;ufficio</div>
                   <div className="text-sm text-stone-400 mb-2">Rimani in sede e mostra le scartoffie.</div>
                   <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-stone-400"><Coins className="w-4 h-4"/> Gratuito</span>
+                    <span className="flex items-center gap-1 text-stone-400"><Coins className="w-4 h-4"/> Gratuito (Alto rischio di bocciatura)</span>
                     <span className="flex items-center gap-1 text-stone-400"><Heart className="w-4 h-4"/> Invariata</span>
                   </div>
                 </button>
@@ -794,7 +864,7 @@ export default function Game() {
             
             <div className="p-6">
               <p className="text-stone-300 mb-6 leading-relaxed">
-                È la settimana di Ferragosto. La pressione antropica è al massimo. Migliaia di turisti premono per entrare nelle Zone A (Riserva Integrale) per fare picnic e bagni nel fiume. Hai un dilemma: aprire i cancelli a pagamento per fare cassa, o mantenere il blocco per proteggere la natura pagando gli straordinari ai ranger?
+                È la settimana di Ferragosto e l'assalto dei bagnanti è fuori controllo. Migliaia di turisti premono per invadere la Zona A, il cuore inviolabile della riserva dove l'accesso umano è severamente vietato, per fare picnic e bagni nel fiume. Hai un dilemma: chiudere un occhio e aprire i cancelli a pagamento per fare cassa, o schierare i ranger in straordinario per difendere la natura dalla folla?
               </p>
 
               <div className="space-y-3">
@@ -849,7 +919,7 @@ export default function Game() {
             
             <div className="p-6">
               <p className="text-stone-300 mb-6 leading-relaxed">
-                Ti trovi all&apos;ingresso di una vecchia grotta naturale. I monitoraggi confermano che è un rifugio del Rhinolophus ferrumequinum (Ferro di Cavallo Maggiore). Un&apos;associazione locale vorrebbe illuminare la grotta per fare cassa, ma i pipistrelli abbandonano i rifugi se c&apos;è luce o rumore.
+                Ti trovi all'ingresso di una vecchia grotta naturale. I nostri sensori confermano che è il rifugio del Rhinolophus ferrumequinum, il raro pipistrello conosciuto come Ferro di Cavallo Maggiore. Un'associazione locale vorrebbe piazzare dei faretti per organizzare visite a pagamento, ma c'è un problema vitale: terrorizzati da luce e rumore, questi animali abbandonerebbero la grotta per sempre.
               </p>
 
               <div className="space-y-3">
@@ -937,7 +1007,7 @@ export default function Game() {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-red-500 transition-colors">Non fare nulla</div>
-                  <div className="text-sm text-stone-400 mb-2">Lascia che il fuoco faccia il suo corso.</div>
+                  <div className="text-sm text-stone-400 mb-2">La situazione ti sembra pericolosa quindi aspetti una pioggia.</div>
                   <div className="flex gap-4 text-sm">
                     <span className="flex items-center gap-1 text-stone-400"><Coins className="w-4 h-4"/> Gratis</span>
                     <span className="flex items-center gap-1 text-red-500"><Heart className="w-4 h-4"/> -50%</span>
@@ -973,11 +1043,11 @@ export default function Game() {
                     </div>
                     <img src="https://top50.iucn-mpsg.org/uploads/species/38/images/m_134_2017-04-26-120950_petagnaea-gussonei.JPG" alt="Petagnaea" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
                     <p className="text-stone-300 text-sm leading-relaxed">
-                      Pianta rarissima, relitto del Terziario. Vive esclusivamente in poche zone umide dei monti Nebrodi. Ha un rischio di estinzione altissimo.
+                      Questa pianta è un vero e proprio fossile vivente, un relitto botanico del Terziario: significa che sopravvive immutata da milioni di anni, da quando la Sicilia aveva un clima sub-tropicale. Oggi, sfuggita alle glaciazioni, riesce a crescere esclusivamente in pochissime e fragili zone umide vicine alle sorgenti dei Monti Nebrodi. Il suo rischio di estinzione è critico.
                     </p>
                     <div className="bg-stone-950/50 border border-stone-600 p-3 rounded-lg mt-4">
                       <span className="block text-xs font-bold text-emerald-500 mb-1">💡 APPUNTO DEL BIOLOGO:</span>
-                      <span className="text-sm text-stone-300">Il "rooting" (grufolamento) dei suini allo stato brado distrugge le stazioni di questa pianta. Le sole recinzioni rinforzate possono tenerli fuori e salvarla.</span>
+                      <span className="text-sm text-stone-300">Il pericolo numero uno non è il clima, ma i maiali allo stato brado e i cinghiali. Praticando il rooting (il grufolamento, ovvero l'arare profondamente il suolo con il muso per cercare radici da mangiare), rivoltano la terra e distruggono le ultime 'stazioni' di crescita della Petagnaea. L'unica barriera fisica in grado di salvare questi fiori millenari è l'installazione di recinzioni rinforzate.</span>
                     </div>
                   </div>
                 ) : (
@@ -999,11 +1069,11 @@ export default function Game() {
                     </div>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Emys_trinacris_geloi_wetland.jpg/1280px-Emys_trinacris_geloi_wetland.jpg" alt="Emys trinacris" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
                     <p className="text-stone-300 text-sm leading-relaxed">
-                      Testuggine palustre endemica della Sicilia. Specie timida che frequenta laghetti e fiumi a lento scorrimento.
+                      La Emys trinacris è una piccola testuggine palustre endemica: un rettile unico al mondo che vive esclusivamente in Sicilia. È una specie timida e schiva, che ama crogiolarsi al sole sulle rocce per poi tuffarsi nei laghetti e nei fiumi a lento scorrimento al minimo segnale di pericolo.
                     </p>
                     <div className="bg-stone-950/50 border border-stone-600 p-3 rounded-lg mt-4">
                       <span className="block text-xs font-bold text-emerald-500 mb-1">💡 APPUNTO DEL BIOLOGO:</span>
-                      <span className="text-sm text-stone-300">È altamente minacciata dal prelievo illegale tramite nasse sommerse. Pattugliamenti severi da parte delle guardie sono cruciali per contrastare questo bracconaggio.</span>
+                      <span className="text-sm text-stone-300">Il pericolo maggiore è invisibile dalla superficie. I bracconieri calano sul fondo le 'nasse', trappole a rete sommerse usate per la pesca illegale. Poiché questa testuggine ha i polmoni e ha bisogno di emergere per respirare, se entra nella nassa per mangiare l'esca è condannata ad annegare. Finanziare pattugliamenti severi per sequestrare queste trappole è l'unico modo per evitare una strage silenziosa.</span>
                     </div>
                   </div>
                 ) : (
@@ -1025,11 +1095,11 @@ export default function Game() {
                     </div>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Russischer_B%C3%A4r_%28Euplagia_quadripunctaria%29-20180805-RM-112757.jpg/1280px-Russischer_B%C3%A4r_%28Euplagia_quadripunctaria%29-20180805-RM-112757.jpg" alt="Euplagia" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
                     <p className="text-stone-300 text-sm leading-relaxed">
-                      Conosciuta come "Falena dell'Edera", è un importante indicatore biologico per gli ambienti ripariali e i corsi d'acqua puliti.
+                      Conosciuta da tutti come 'Falena dell'Edera', questo splendido insetto è un importantissimo indicatore biologico: la sua sola presenza ci garantisce che il corso d'acqua è incontaminato e che la fascia verde lungo le sponde (l'ambiente ripariale) gode di ottima salute.
                     </p>
                     <div className="bg-stone-950/50 border border-stone-600 p-3 rounded-lg mt-4">
                       <span className="block text-xs font-bold text-emerald-500 mb-1">💡 APPUNTO DEL BIOLOGO:</span>
-                      <span className="text-sm text-stone-300">Qualsiasi intervento aggressivo con ruspe sugli argini distruggerebbe il suo habitat. È fondamentale imporre tagli manuali e selettivi della vegetazione.</span>
+                      <span className="text-sm text-stone-300">Le macchine pesanti sono il suo peggior nemico. Qualsiasi scavo aggressivo con le ruspe sugli argini raderebbe al suolo i cespugli in cui vive e si riproduce. Per mantenere i fiumi sicuri e proteggere la falena, è obbligatorio finanziare squadre specializzate che eseguano solo tagli manuali e 'selettivi', rimuovendo i rami morti e lasciando intatte le piante vive.</span>
                     </div>
                   </div>
                 ) : (
@@ -1051,11 +1121,11 @@ export default function Game() {
                     </div>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Gro%C3%9Fe_Hufeisennase_%28Rhinolophus_ferrumequinum%29_1.jpg/1280px-Gro%C3%9Fe_Hufeisennase_%28Rhinolophus_ferrumequinum%29_1.jpg" alt="Rhinolophus" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
                     <p className="text-stone-300 text-sm leading-relaxed">
-                      Il pipistrello "Ferro di cavallo maggiore" è in forte declino. Le colonie riproduttive vivono in grotte naturali completamente buie e isolate.
+                      Il grande pipistrello conosciuto come 'Ferro di cavallo maggiore' è in drammatico declino in tutta Europa. Ha un bisogno vitale di grotte naturali nel buio più assoluto e lontane da ogni disturbo per formare le sue colonie riproduttive: dei veri e propri 'asili nido' sicuri dove le madri partoriscono e allattano i piccoli.
                     </p>
                     <div className="bg-stone-950/50 border border-stone-600 p-3 rounded-lg mt-4">
                       <span className="block text-xs font-bold text-emerald-500 mb-1">💡 APPUNTO DEL BIOLOGO:</span>
-                      <span className="text-sm text-stone-300">Questa specie è estremamente sensibile alla luce e al rumore. Autorizzare visite turistiche nelle grotte causerà l'abbandono immediato della colonia.</span>
+                      <span className="text-sm text-stone-300">Questa specie ha il terrore della luce e del caos. Anche una singola visita turistica con faretti e schiamazzi è sufficiente a terrorizzare gli adulti, causando l'abbandono immediato della grotta e la conseguente perdita di un'intera generazione di cuccioli. Mantenere l'area chiusa al pubblico è un imperativo</span>
                     </div>
                   </div>
                 ) : (
