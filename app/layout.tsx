@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import './globals.css'; // Global styles
+import './globals.css';
 
 export const metadata: Metadata = {
   title: "Custodi del Flascio",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     siteName: "Custodi del Flascio",
     images: [
       {
-        url: "https://custodi-del-flascio.vercel.app/Mappa_Bosco.png", 
+        url: "https://custodi-del-flascio.vercel.app/opengraph-image.jpg", 
         width: 1200,
         height: 630,
         alt: "Mappa del Bosco del Flascio",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en">
+    <html lang="it">
       <body suppressHydrationWarning>{children}</body>
     </html>
   );
