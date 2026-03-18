@@ -20,10 +20,12 @@ Il giocatore veste i panni del Direttore dell'Area Protetta terrestre/boschiva *
 * **AI Integration:** Google Gemini API (utilizzata per la generazione dinamica dei contenuti).
 
 ## 🗂 Struttura del Progetto
-Per gli sviluppatori o gli enti che desiderano personalizzare il simulatore:
-* `/app`: Contiene le pagine e le logiche di routing di Next.js.
-* `/lib`: Contiene i file di configurazione, i dati strutturati (es. schede delle specie) e le chiamate API verso Gemini. Modificare questi file per aggiornare la "lore" o i parametri biologici.
-* `/public`: Asset statici, icone e immagini.
+L'architettura del simulatore è volutamente consolidata per facilitare la rapida iterazione del prototipo. Il *core logic* e l'interfaccia utente (UI) risiedono principalmente all'interno della directory `/app`:
+
+* **`/app/page.tsx`**: È il cuore pulsante dell'applicazione. Questo file centralizza l'intera logica del gioco (gestione degli stati, ciclo dei turni, calcolo del budget/salute ecosistemica, condizioni di *Game Over*), i contenuti narrativi (testi degli eventi, schede tecniche delle specie come *Petagnaea gussonei* e *Rhinolophus*), le chiamate API, e l'integrazione dei componenti UI (modals, HUD, posizionamento degli elementi interattivi sulla mappa).
+* **`/app/layout.tsx`**: Gestisce il layout radice dell'applicazione Next.js, configurando i metadati globali (titolo, descrizione) e le impostazioni base della struttura HTML.
+* **`/app/globals.css`**: Contiene gli stili globali e l'inizializzazione di Tailwind CSS.
+* **`/lib/utils.ts`**: Contiene funzioni di utilità per la gestione dinamica delle classi CSS (es. la funzione `cn` per fondere le classi di Tailwind in modo condizionale senza conflitti).
 
 ---
 
