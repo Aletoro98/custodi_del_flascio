@@ -62,5 +62,21 @@ L'applicazione è ottimizzata per il deployment su piattaforme cloud come **Verc
 
 ---
 
-## 📄 Licenza
-Questo progetto è rilasciato sotto licenza **MIT**. Sei libero di utilizzarlo, modificarlo e distribuirlo, a patto di includere l'avviso di copyright originale. (Per i dettagli, consultare il file `LICENSE` se presente nel repository).
+## 📄 Licenze e Crediti (Credits)
+
+**Codice Sorgente**
+Il codice sorgente di questo simulatore è rilasciato sotto licenza **MIT**. Sei libero di utilizzarlo, modificarlo e distribuirlo, a patto di includere l'avviso di copyright originale.
+
+**Fonti Scientifiche**
+Il simulatore si basa sui dati reali del Sito Natura 2000 **ITA070007 "Bosco del Flascio"**. 
+Riferimenti normativi utilizzati per le meccaniche di gioco: *Direttiva Habitat 92/43/CEE*.
+
+**Asset Fotografici (Schede Tecniche)**
+Le fotografie utilizzate all'interno del gioco appartengono ai rispettivi autori. Quelle tratte da Wikimedia Commons sono distribuite con licenza **Creative Commons**:
+* 🌸 **Petagnaea gussonei:** Immagine del Prof. Lorenzo Gianguzzi (Dipartimento SAF - UNIPA).
+* 🐢 **Emys trinacris:** Foto di Taxiarchis Danelis (Wikimedia Commons, Licenza CC BY 4.0).
+* 🦋 **Euplagia quadripunctaria:** Foto di Ermell (Wikimedia Commons, Licenza CC BY-SA 4.0).
+* 🦇 **Rhinolophus ferrumequinum:** Foto di Klaus Krahn (Wikimedia Commons, Licenza CC BY-SA 4.0).
+
+**Grafiche e UI**
+Le grafiche ambientali e gli elementi visivi dell'interfaccia sono stati generati tramite Intelligenza Artificiale (Google Gemini, modello: Nano Banana 2).
