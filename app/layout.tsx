@@ -1,5 +1,6 @@
-import type {Metadata} from 'next';
+import type { Metadata } from 'next';
 import './globals.css';
+import { PHProvider } from './providers'; // Importiamo il provider per la telemetria
 
 export const metadata: Metadata = {
   title: "Custodi del Flascio",
@@ -25,7 +26,12 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="it">
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {/* Avvolgiamo l'app con PostHog per tracciare gli eventi */}
+        <PHProvider>
+          {children}
+        </PHProvider>
+      </body>
     </html>
   );
 }
