@@ -4,9 +4,9 @@ import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
 
 if (typeof window !== 'undefined') {
-  posthog.init('phc_kaYghtwKtG9Oj6HGLR4mGJxnYoFmgkbRBuODlsj5952', {
-    api_host: 'https://eu.i.posthog.com',
-    person_profiles: 'identified_only', // Opzione consigliata per la privacy
+  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+    person_profiles: 'identified_only',
   })
 }
 
