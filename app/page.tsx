@@ -75,12 +75,12 @@ useEffect(() => {
       });
     } else if (choiceId === 2) {
       setBudget(prev => prev - 12000);
-      setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev + 5)));
+      setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev + 12)));
       setPetagnaeaViva(true);
       setDailyReport({
         text: "Hai costruito le recinzioni come previsto dalle Misure di Conservazione. La Petagnaea è al sicuro per sempre. Hai investito una somma importante, ma necessaria.",
         impacts: [
-          "📈 Salute Bosco: +5%",
+          "📈 Salute Bosco: +12%",
           "💸 Budget: - € 12.000"
         ]
       });
@@ -103,12 +103,12 @@ useEffect(() => {
       });
     } else if (choiceId === 2) {
       setBudget(prev => prev - 2000);
-      setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev + 5)));
+      setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev + 10)));
       setEmysViva(true);
       setDailyReport({
         text: "Le guardie hanno presidiato le sponde tutta la notte. Sono state sequestrate tre trappole e salvati due esemplari di Emys. Ottimo lavoro.",
         impacts: [
-          "📈 Salute Bosco: +5%",
+          "📈 Salute Bosco: +10%",
           "💸 Budget: - € 2.000"
         ]
       });
@@ -129,13 +129,13 @@ useEffect(() => {
       });
     } else if (choiceId === 2) {
       setBudget(prev => prev - 4000);
-      setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev + 8)));
+      setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev + 10)));
       setEuplagiaViva(true);
       setDailyReport({
         text: "Hai vietato le ruspe e pagato squadre di operai per tagliare solo il secco a mano. La vegetazione ripariale, il fragile ecosistema che abbraccia il fiume, è intatta. Di sera, osservi centinaia di Euplagia volare tra le foglie. Un successo per Natura 2000!",
         impacts: [
           "🦋 Biodiversità: Habitat salvato!",
-          "📈 Salute Bosco: +8%",
+          "📈 Salute Bosco: +10%",
           "💸 Budget: - € 4.000 (Costo manodopera)"
         ]
       });
@@ -177,11 +177,11 @@ useEffect(() => {
       });
     } else if (choiceId === 2) {
       setBudget(prev => prev - 1000);
-      setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev + 2)));
+      setEcosistemaSalute(prev => Math.min(100, Math.max(0, prev + 10)));
       setDailyReport({
         text: "Hai schierato le pattuglie a ogni varco. Nessuno è entrato. Il bosco è rimasto silenzioso e incontaminato. È stata una scelta impopolare e costosa, ma necessaria per la natura.",
         impacts: [
-          "📈 Salute Bosco: +2%",
+          "📈 Salute Bosco: +10%",
           "💸 Budget: - € 1.000 (Straordinari)"
         ]
       });
@@ -260,7 +260,7 @@ useEffect(() => {
         text: "Il bosco è salvo, ma le casse del parco si stanno svuotando. La Corte dei Conti ha commissariato l'Ente Parco. Gestione fallimentare.",
         color: "text-red-500"
       };
-    } else if (ecosistemaSalute < 40) {
+    } else if (ecosistemaSalute < 50) {
       return {
         title: "SCONFITTA: DISASTRO ECOLOGICO",
         text: `Il parco è un deserto. La salute è crollata sotto la soglia minima.${!petagnaeaViva ? " Inoltre, è andata estinta anche la rarissima Petagnaea. Fallimento totale." : ""}`,
@@ -272,13 +272,13 @@ useEffect(() => {
         text: "La salute generale è accettabile, MA hai fallito la missione principale. La Petagnaea è stata distrutta dalla tua incuria. L'UE ha tagliato i fondi.",
         color: "text-red-500"
       };
-    } else if (ecosistemaSalute >= 75 && emysViva && euplagiaViva && rhinolophusVivo) {
+    } else if (ecosistemaSalute >= 90 && emysViva && euplagiaViva && rhinolophusVivo) {
       return {
         title: "🏆 VITTORIA: CUSTODE DEL FLASCIO",
-        text: "Risultato perfetto! Hai difeso la natura contro ogni minaccia. Tutte le specie prosperano.",
+        text: "Risultato eccellente! Hai difeso la natura contro ogni minaccia. Tutte le specie prosperano e la tua gestione è stata impeccabile.",
         color: "text-emerald-400"
       };
-    } else if (ecosistemaSalute >= 40 && (!emysViva || !euplagiaViva || !rhinolophusVivo)) {
+    } else if (ecosistemaSalute >= 50 && (!emysViva || !euplagiaViva || !rhinolophusVivo)) {
       return {
         title: "📉 VITTORIA AMARA",
         text: "Il bosco è vivo, ma il prezzo pagato in termini di biodiversità è alto. Hai perso alcune specie secondarie. Il parco è più povero e silenzioso.",
@@ -286,8 +286,8 @@ useEffect(() => {
       };
     } else {
       return {
-        title: "😐 VITTORIA OPERATIVA",
-        text: "Il parco è sopravvissuto. Hai dovuto fare compromessi, ma l'ecosistema regge e le specie protette sono salve. Serviranno più fondi in futuro.",
+        title: "👍 VITTORIA OPERATIVA",
+        text: "Ottimo lavoro! Il parco è salvo e le specie protette prosperano. Hai dovuto accettare qualche duro compromesso, ma l'ecosistema regge bene.",
         color: "text-blue-400"
       };
     }
@@ -679,11 +679,7 @@ useEffect(() => {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-red-400 transition-colors">Manda una squadra a scacciarli</div>
-                  <div className="text-sm text-stone-400 mb-2">I cinghiali torneranno. Rischio estinzione Petagnaea.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-stone-400"><Coins className="w-4 h-4"/> Gratuito</span>
-                    <span className="flex items-center gap-1 text-red-400"><Heart className="w-4 h-4"/> -5%</span>
-                  </div>
+                  <div className="text-sm text-stone-400">Un intervento <span className="text-stone-300 font-medium">gratuito</span> ma provvisorio. I cinghiali torneranno. Rischio estinzione Petagnaea.</div>
                 </button>
 
                 <button 
@@ -691,11 +687,7 @@ useEffect(() => {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">Costruisci recinzioni rinforzate</div>
-                  <div className="text-sm text-stone-400 mb-2">Messa in sicurezza definitiva della Petagnaea.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-yellow-400"><Coins className="w-4 h-4"/> -€ 12.000</span>
-                    <span className="flex items-center gap-1 text-emerald-400"><Heart className="w-4 h-4"/> +5%</span>
-                  </div>
+                  <div className="text-sm text-stone-400">Messa in sicurezza definitiva della Petagnaea, ma richiederà un <span className="text-stone-300 font-medium">investimento abbastanza alto</span>.</div>
                 </button>
               </div>
             </div>
@@ -734,11 +726,7 @@ useEffect(() => {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-red-400 transition-colors">Ignora e risparmia i fondi</div>
-                  <div className="text-sm text-stone-400 mb-2">I bracconieri agiranno indisturbati. Rischio estinzione Emys.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-stone-400"><Coins className="w-4 h-4"/> Gratuito</span>
-                    <span className="flex items-center gap-1 text-red-400"><Heart className="w-4 h-4"/> -5%</span>
-                  </div>
+                  <div className="text-sm text-stone-400"><span className="text-stone-300 font-medium">Non spendi nulla</span>, ma i bracconieri agiranno indisturbati. Rischio estinzione Emys.</div>
                 </button>
 
                 <button 
@@ -746,11 +734,7 @@ useEffect(() => {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">Finanzia pattugliamenti notturni</div>
-                  <div className="text-sm text-stone-400 mb-2">Le guardie sequestreranno le trappole e salveranno le testuggini.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-yellow-400"><Coins className="w-4 h-4"/> -€ 2.000</span>
-                    <span className="flex items-center gap-1 text-emerald-400"><Heart className="w-4 h-4"/> +5%</span>
-                  </div>
+                  <div className="text-sm text-stone-400">Con una <span className="text-stone-300 font-medium">spesa contenuta</span>, le guardie sequestreranno le trappole e salveranno le testuggini.</div>
                 </button>
               </div>
             </div>
@@ -789,11 +773,7 @@ useEffect(() => {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-red-400 transition-colors">Autorizza la pulizia totale</div>
-                  <div className="text-sm text-stone-400 mb-2">L&apos;acqua scorrerà veloce, ma distruggerai il corridoio ecologico.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-stone-400"><Coins className="w-4 h-4"/> Gratuito</span>
-                    <span className="flex items-center gap-1 text-red-400"><Heart className="w-4 h-4"/> -10%</span>
-                  </div>
+                  <div className="text-sm text-stone-400">L&apos;acqua scorrerà veloce e l'intervento è <span className="text-stone-300 font-medium">a costo zero</span>, ma distruggerai il corridoio ecologico.</div>
                 </button>
 
                 <button 
@@ -801,11 +781,7 @@ useEffect(() => {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">Imponi il taglio selettivo manuale</div>
-                  <div className="text-sm text-stone-400 mb-2">La vegetazione ripariale rimarrà intatta.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-yellow-400"><Coins className="w-4 h-4"/> -€ 4.000</span>
-                    <span className="flex items-center gap-1 text-emerald-400"><Heart className="w-4 h-4"/> +8%</span>
-                  </div>
+                  <div className="text-sm text-stone-400">La vegetazione ripariale rimarrà intatta, ma i lavori manuali avranno un <span className="text-stone-300 font-medium">costo moderato</span>.</div>
                 </button>
               </div>
             </div>
@@ -849,11 +825,7 @@ useEffect(() => {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">Organizza un monitoraggio sul campo</div>
-                  <div className="text-sm text-stone-400 mb-2">Mostra all&apos;ispettore la vera natura del parco.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-yellow-400"><Coins className="w-4 h-4"/> -€ 500 (Alta probabilità di successo)</span>
-                    <span className="flex items-center gap-1 text-stone-400"><Heart className="w-4 h-4"/> Invariata</span>
-                  </div>
+                  <div className="text-sm text-stone-400">Mostra all&apos;ispettore la vera natura del parco. Richiede una <span className="text-stone-300 font-medium">piccola spesa logistica</span>.</div>
                 </button>
 
                 <button 
@@ -861,11 +833,7 @@ useEffect(() => {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-stone-300 transition-colors">Affidati ai vecchi dati d&apos;ufficio</div>
-                  <div className="text-sm text-stone-400 mb-2">Rimani in sede e mostra le scartoffie.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-stone-400"><Coins className="w-4 h-4"/> Gratuito (Alto rischio di bocciatura)</span>
-                    <span className="flex items-center gap-1 text-stone-400"><Heart className="w-4 h-4"/> Invariata</span>
-                  </div>
+                  <div className="text-sm text-stone-400">Rimani in sede e mostra le scartoffie. <span className="text-stone-300 font-medium">Non costa nulla</span>, ma rischi una bocciatura.</div>
                 </button>
               </div>
             </div>
@@ -903,24 +871,16 @@ useEffect(() => {
                   onClick={() => handleChoiceDay5(1)}
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
-                  <div className="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">Consenti l&apos;accesso con ticket</div>
-                  <div className="text-sm text-stone-400 mb-2">Fai cassa ma sacrifichi un po&apos; di natura.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-emerald-400"><Coins className="w-4 h-4"/> +€ 3.000</span>
-                    <span className="flex items-center gap-1 text-red-400"><Heart className="w-4 h-4"/> -5%</span>
-                  </div>
+                  <div className="font-semibold text-white mb-1 group-hover:text-red-400 transition-colors">Consenti l&apos;accesso con ticket</div>
+                  <div className="text-sm text-stone-400">Sacrifichi un po&apos; di natura, ma ti garantisce un <span className="text-stone-300 font-medium">ottimo incasso</span> per le casse dell&apos;Ente.</div>
                 </button>
 
                 <button 
                   onClick={() => handleChoiceDay5(2)}
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
-                  <div className="font-semibold text-white mb-1 group-hover:text-red-400 transition-colors">Blocco Totale e sorveglianza</div>
-                  <div className="text-sm text-stone-400 mb-2">Proteggi la natura a costo di pagare gli straordinari.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-yellow-400"><Coins className="w-4 h-4"/> -€ 1.000</span>
-                    <span className="flex items-center gap-1 text-emerald-400"><Heart className="w-4 h-4"/> +2%</span>
-                  </div>
+                  <div className="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">Blocco Totale e sorveglianza</div>
+                  <div className="text-sm text-stone-400">Proteggi la natura, ma dovrai affrontare una <span className="text-stone-300 font-medium">piccola spesa extra</span> per pagare gli straordinari.</div>
                 </button>
               </div>
             </div>
@@ -958,24 +918,16 @@ useEffect(() => {
                   onClick={() => handleChoiceDay6(1)}
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
-                  <div className="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">Autorizza le visite turistiche</div>
-                  <div className="text-sm text-stone-400 mb-2">Fai cassa ma metti a rischio la colonia.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-emerald-400"><Coins className="w-4 h-4"/> +€ 2.000</span>
-                    <span className="flex items-center gap-1 text-red-400"><Heart className="w-4 h-4"/> -15%</span>
-                  </div>
+                  <div className="font-semibold text-white mb-1 group-hover:text-red-400 transition-colors">Autorizza le visite turistiche</div>
+                  <div className="text-sm text-stone-400">Metti a rischio la colonia, ma l&apos;afflusso di turisti porterà un <span className="text-stone-300 font-medium">buon guadagno</span>.</div>
                 </button>
 
                 <button 
                   onClick={() => handleChoiceDay6(2)}
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
-                  <div className="font-semibold text-white mb-1 group-hover:text-red-400 transition-colors">Chiudi la grotta</div>
-                  <div className="text-sm text-stone-400 mb-2">Proteggi i pipistrelli con una cancellata speciale.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-yellow-400"><Coins className="w-4 h-4"/> -€ 3.000</span>
-                    <span className="flex items-center gap-1 text-emerald-400"><Heart className="w-4 h-4"/> +10%</span>
-                  </div>
+                  <div className="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">Chiudi la grotta</div>
+                  <div className="text-sm text-stone-400">Proteggi i pipistrelli con una cancellata speciale. L&apos;installazione avrà un <span className="text-stone-300 font-medium">costo significativo</span>.</div>
                 </button>
               </div>
             </div>
@@ -1014,11 +966,7 @@ useEffect(() => {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">Chiama i Canadair</div>
-                  <div className="text-sm text-stone-400 mb-2">Intervento aereo massiccio e immediato.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-red-400"><Coins className="w-4 h-4"/> -€ 20.000</span>
-                    <span className="flex items-center gap-1 text-yellow-400"><Heart className="w-4 h-4"/> -2%</span>
-                  </div>
+                  <div className="text-sm text-stone-400">Intervento aereo massiccio e immediato. È la soluzione migliore, ma ha un <span className="text-stone-300 font-medium">costo esorbitante</span>.</div>
                 </button>
 
                 <button 
@@ -1026,11 +974,7 @@ useEffect(() => {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-yellow-400 transition-colors">Manda le squadre di terra</div>
-                  <div className="text-sm text-stone-400 mb-2">Intervento manuale, più lento e rischioso.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-yellow-400"><Coins className="w-4 h-4"/> -€ 5.000</span>
-                    <span className="flex items-center gap-1 text-red-400"><Heart className="w-4 h-4"/> -15%</span>
-                  </div>
+                  <div className="text-sm text-stone-400">Intervento manuale, più lento e rischioso. Richiede un <span className="text-stone-300 font-medium">investimento medio</span>.</div>
                 </button>
 
                 <button 
@@ -1038,11 +982,7 @@ useEffect(() => {
                   className="w-full text-left p-4 rounded-xl border border-stone-600 bg-stone-700/50 hover:bg-stone-700 hover:border-stone-500 transition-all group"
                 >
                   <div className="font-semibold text-white mb-1 group-hover:text-red-500 transition-colors">Non fare nulla</div>
-                  <div className="text-sm text-stone-400 mb-2">La situazione ti sembra pericolosa quindi aspetti una pioggia.</div>
-                  <div className="flex gap-4 text-sm">
-                    <span className="flex items-center gap-1 text-stone-400"><Coins className="w-4 h-4"/> Gratis</span>
-                    <span className="flex items-center gap-1 text-red-500"><Heart className="w-4 h-4"/> -50%</span>
-                  </div>
+                  <div className="text-sm text-stone-400">Aspetti la pioggia. <span className="text-stone-300 font-medium">Non spendi nulla</span>, ma le conseguenze per l'ecosistema potrebbero essere disastrose.</div>
                 </button>
               </div>
             </div>
@@ -1334,7 +1274,7 @@ useEffect(() => {
               <div className="bg-stone-800 p-6 rounded-2xl border border-stone-700 mt-6">
                 <div className="text-stone-400 text-sm font-bold tracking-wider uppercase mb-2">Valutazione Gestionale</div>
                 <div className="text-2xl font-bold text-white">
-                  {budget < 0 ? 'ECONOMISTA PESSIMO' : ecosistemaSalute < 40 ? 'DISATTENTO' : 'EQUILIBRATO (Bilanciamento corretto)'}
+                  {budget < 0 ? 'ECONOMISTA PESSIMO' : ecosistemaSalute < 50 ? 'DISATTENTO' : ecosistemaSalute >= 90 ? 'ECCELLENTE (Gestione Magistrale)' : 'BUONO (Bilanciamento corretto)'}
                 </div>
               </div>
 
