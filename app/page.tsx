@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react'; // Una sola riga per tutto quello che serve da React
-import { Coins, Heart, Calendar, X, AlertTriangle, Info } from 'lucide-react'; // I tuoi icone
-import posthog from 'posthog-js'; // L'import di PostHog
+import { Coins, Heart, Calendar, X, AlertTriangle, Info } from 'lucide-react'; // Icone
+//import posthog from 'posthog-js'; // L'import di PostHog
 
 export default function Game() {
   const [giornoCorrente, setGiornoCorrente] = useState(1);
@@ -23,35 +23,35 @@ export default function Game() {
   const [rhinolophusVivo, setRhinolophusVivo] = useState(true);
   const [activeBioInfo, setActiveBioInfo] = useState<string | null>(null);
   // 1. Traccia l'accesso alla pagina (Landing)
-useEffect(() => {
-  posthog.capture('pagina_caricata', { gioco: 'Custodi del Flascio' });
-}, []);
+//useEffect(() => {
+  //posthog.capture('pagina_caricata', { gioco: 'Custodi del Flascio' });
+//}, []);
 
 // 2. Traccia quando l'utente preme effettivamente "Inizia Gioco"
-useEffect(() => {
-  if (gameStarted) {
-    posthog.capture('partita_iniziata');
-  }
-}, [gameStarted]);
+//useEffect(() => {
+  //if (gameStarted) {
+    //posthog.capture('partita_iniziata');
+  //}
+//}, [gameStarted]);
 
 // 3. Traccia il Game Over e i risultati finali
-useEffect(() => {
-  if (isGameOver) {
-    posthog.capture('partita_conclusa', {
-      giorno_finale: giornoCorrente,
-      budget_rimanente: budget,
-      salute_ecosistema: ecosistemaSalute,
-      petagnaea_sopravvissuta: petagnaeaViva
-    });
-  }
-}, [isGameOver]);
+//useEffect(() => {
+  //if (isGameOver) {
+    //posthog.capture('partita_conclusa', {
+      //giorno_finale: giornoCorrente,
+      //budget_rimanente: budget,
+      //salute_ecosistema: ecosistemaSalute,
+      //petagnaea_sopravvissuta: petagnaeaViva
+    //});
+  //}
+//}, [isGameOver]);
 
 // 4. Traccia l'estinzione della Petagnaea (Il tuo obiettivo di ricerca!)
-useEffect(() => {
-  if (!petagnaeaViva) {
-    posthog.capture('estinzione_specie', { specie: 'Petagnaea gussonei' });
-  }
-}, [petagnaeaViva]);
+//useEffect(() => {
+  //if (!petagnaeaViva) {
+    //posthog.capture('estinzione_specie', { specie: 'Petagnaea gussonei' });
+  //}
+//}, [petagnaeaViva]);
 
   type DailyReportData = {
     text: string;
