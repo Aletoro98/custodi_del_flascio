@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Simulatore Gestionale sulla Biodiversità - Rete Natura 2000",
   openGraph: {
     title: "🌲 Custodi del Flascio - Gioca Ora",
-    description: "Mettiti alla prova come Direttore della Riserva. Riuscirai a salvare la Petagnaea e l'ecosistema boschivo senza far fallire l'Ente?",
+    description: "Mettiti alla prova come Coordinatore del sito. Riuscirai a salvare la Petagnaea e l'ecosistema boschivo senza far fallire l'Ente?",
     url: "https://custodi-del-flascio.vercel.app/",
     siteName: "Custodi del Flascio",
     images: [
