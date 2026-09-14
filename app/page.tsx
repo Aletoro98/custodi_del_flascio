@@ -456,7 +456,7 @@ export default function Game() {
       <main className="flex-1 relative overflow-hidden bg-stone-950 flex items-center justify-center p-4">
         <div className="relative w-full max-w-5xl rounded-xl overflow-hidden shadow-2xl border-2 md:border-4 border-stone-800 bg-stone-900">
           {/* Map Background */}
-          <img src="https://i.postimg.cc/66kDhfq2/Mappa_Bosco.png" alt="Mappa Bosco del Flascio" className="w-full h-auto block" />
+          <img src="/img/mappa-bosco.png" alt="Mappa Bosco del Flascio" className="w-full h-auto block" />
 
          {/* Level 1: Static Species Tokens (Cliccabili) */}
           <button 
@@ -466,7 +466,7 @@ export default function Game() {
           >
             {petagnaeaViva ? (
               <img 
-                src="https://i.postimg.cc/44Dr1Qy4/Token_Petagnaea_Scontornato.png" 
+                src="/img/token-petagnaea.png" 
                 alt="Petagnaea" 
                 className="w-full h-full object-contain drop-shadow-lg"
               />
@@ -482,7 +482,7 @@ export default function Game() {
           >
             {emysViva ? (
               <img 
-                src="https://i.postimg.cc/cLqqhy16/Token_Tartaruga_Scontornato.png" 
+                src="/img/token-tartaruga.png" 
                 alt="Emys trinacris" 
                 className="w-full h-full object-contain drop-shadow-lg"
               />
@@ -498,7 +498,7 @@ export default function Game() {
           >
             {rhinolophusVivo ? (
               <img 
-                src="https://i.postimg.cc/VkcQjFhG/Token_Pipistrello_Scontornata.png" 
+                src="/img/token-pipistrello.png" 
                 alt="Rhinolophus ferrumequinum" 
                 className="w-full h-full object-contain drop-shadow-lg"
               />
@@ -514,7 +514,7 @@ export default function Game() {
           >
             {euplagiaViva ? (
               <img 
-                src="https://i.postimg.cc/vTgFv2Mv/Token_Farfalla_Scontornata.png" 
+                src="/img/token-farfalla.png" 
                 alt="Euplagia quadripunctaria" 
                 className="w-full h-full object-contain drop-shadow-lg"
               />
@@ -530,7 +530,7 @@ export default function Game() {
               onClick={() => setIsModalOpen(true)}
             >
               <img 
-                src="https://i.postimg.cc/Kc6d5DjZ/Token_Suidi_Scontornato.png" 
+                src="/img/token-suidi.png" 
                 alt="Suidi" 
                 className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(239,68,68,0.6)]"
               />
@@ -546,7 +546,7 @@ export default function Game() {
               onClick={() => setIsModalOpen(true)}
             >
               <img 
-                src="https://i.postimg.cc/qvffwVBt/Token_Nasse_Scontornato.png" 
+                src="/img/token-nasse.png" 
                 alt="Nasse" 
                 className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(239,68,68,0.6)]"
               />
@@ -562,7 +562,7 @@ export default function Game() {
               onClick={() => setIsModalOpen(true)}
             >
               <img 
-                src="https://i.postimg.cc/B6Cs8MHv/Token-Ruspa-Scontornato.png" 
+                src="/img/token-ruspa.png" 
                 alt="Ruspa" 
                 className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(239,68,68,0.6)]"
               />
@@ -578,7 +578,7 @@ export default function Game() {
               onClick={() => setIsModalOpen(true)}
             >
               <img 
-                src="https://i.postimg.cc/nzC8kdYd/Token-Valigetta-Scontornato.png" 
+                src="/img/token-valigetta.png" 
                 alt="Valigetta" 
                 className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(59,130,246,0.6)]"
               />
@@ -594,7 +594,7 @@ export default function Game() {
               onClick={() => setIsModalOpen(true)}
             >
               <img 
-                src="https://i.postimg.cc/cJMxt51m/Token-Ferragosto-Scontornato.png" 
+                src="/img/token-ferragosto.png" 
                 alt="Ferragosto" 
                 className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(239,68,68,0.6)]"
               />
@@ -610,7 +610,7 @@ export default function Game() {
               onClick={() => setIsModalOpen(true)}
             >
               <img 
-                src="https://i.postimg.cc/NG2vSfZk/Token-Visite-Scontornato.png" 
+                src="/img/token-visite.png" 
                 alt="Turisti con Torce" 
                 className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(239,68,68,0.6)]"
               />
@@ -626,7 +626,7 @@ export default function Game() {
               onClick={() => setIsModalOpen(true)}
             >
               <img 
-                src="https://i.postimg.cc/HjGfTXcQ/Adobe-Express-file.png" 
+                src="/img/token-evento.png" 
                 alt="Fuoco" 
                 className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]"
               />
@@ -1012,7 +1012,7 @@ export default function Game() {
                       <span className="text-2xl font-black text-emerald-400 italic">Petagnaea gussonei</span>
                       <span className="text-xs font-bold px-2 py-1 bg-emerald-900/50 text-emerald-400 border border-emerald-500 rounded-full">COD. 6950</span>
                     </div>
-                    <img src="https://top50.iucn-mpsg.org/uploads/species/38/images/m_134_2017-04-26-120950_petagnaea-gussonei.JPG" alt="Petagnaea" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
+                    <img src="/img/specie-petagnaea.jpg" alt="Petagnaea" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
                     <p className="text-stone-300 text-sm leading-relaxed">
                       Questa pianta è un vero e proprio fossile vivente, un relitto botanico del Terziario: significa che sopravvive immutata da milioni di anni, da quando la Sicilia aveva un clima sub-tropicale. Oggi, sfuggita alle glaciazioni, riesce a crescere esclusivamente in pochissime e fragili zone umide vicine alle sorgenti dei Monti Nebrodi. Il suo rischio di estinzione è critico.
                     </p>
@@ -1038,7 +1038,7 @@ export default function Game() {
                       <span className="text-2xl font-black text-emerald-400 italic">Emys trinacris</span>
                       <span className="text-xs font-bold px-2 py-1 bg-emerald-900/50 text-emerald-400 border border-emerald-500 rounded-full">COD. 5370</span>
                     </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Emys_trinacris_geloi_wetland.jpg/1280px-Emys_trinacris_geloi_wetland.jpg" alt="Emys trinacris" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
+                    <img src="/img/specie-emys.jpg" alt="Emys trinacris" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
                     <p className="text-stone-300 text-sm leading-relaxed">
                       La Emys trinacris è una piccola testuggine palustre endemica: un rettile unico al mondo che vive esclusivamente in Sicilia. È una specie timida e schiva, che ama crogiolarsi al sole sulle rocce per poi tuffarsi nei laghetti e nei fiumi a lento scorrimento al minimo segnale di pericolo.
                     </p>
@@ -1064,7 +1064,7 @@ export default function Game() {
                       <span className="text-2xl font-black text-emerald-400 italic">Euplagia quadripunctaria</span>
                       <span className="text-xs font-bold px-2 py-1 bg-emerald-900/50 text-emerald-400 border border-emerald-500 rounded-full">COD. 6199</span>
                     </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Russischer_B%C3%A4r_%28Euplagia_quadripunctaria%29-20180805-RM-112757.jpg/1280px-Russischer_B%C3%A4r_%28Euplagia_quadripunctaria%29-20180805-RM-112757.jpg" alt="Euplagia" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
+                    <img src="/img/specie-euplagia.jpg" alt="Euplagia" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
                     <p className="text-stone-300 text-sm leading-relaxed">
                       Conosciuta da tutti come 'Falena dell'Edera', questo splendido insetto è un importantissimo indicatore biologico: la sua sola presenza ci garantisce che il corso d'acqua è incontaminato e che la fascia verde lungo le sponde (l'ambiente ripariale) gode di ottima salute.
                     </p>
@@ -1090,7 +1090,7 @@ export default function Game() {
                       <span className="text-2xl font-black text-emerald-400 italic">Rhinolophus f.</span>
                       <span className="text-xs font-bold px-2 py-1 bg-emerald-900/50 text-emerald-400 border border-emerald-500 rounded-full">COD. 1304</span>
                     </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Gro%C3%9Fe_Hufeisennase_%28Rhinolophus_ferrumequinum%29_1.jpg/1280px-Gro%C3%9Fe_Hufeisennase_%28Rhinolophus_ferrumequinum%29_1.jpg" alt="Rhinolophus" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
+                    <img src="/img/specie-rhinolophus.jpg" alt="Rhinolophus" className="w-full h-48 object-cover rounded-xl border-2 border-stone-700 shadow-md" />
                     <p className="text-stone-300 text-sm leading-relaxed">
                       Il grande pipistrello conosciuto come 'Ferro di cavallo maggiore' è in drammatico declino in tutta Europa. Ha un bisogno vitale di grotte naturali nel buio più assoluto e lontane da ogni disturbo per formare le sue colonie riproduttive: dei veri e propri 'asili nido' sicuri dove le madri partoriscono e allattano i piccoli.
                     </p>
