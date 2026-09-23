@@ -16,7 +16,7 @@ Il giocatore veste i panni del Coordinatore del sito **Bosco del Flascio** (Rete
 * **Lore Integrata e Interattiva:** Le schede scientifiche di specie protette (es. *Petagnaea gussonei*, *Rhinolophus*, *Emys*) sono integrate nella mappa. Leggerle fornisce indizi vitali per risolvere le emergenze. Se una specie si estingue, la sua scheda diventa inaccessibile, creando un forte impatto emotivo.
 
 ## 💻 Stack Tecnologico
-* **Frontend:** React, Next.js (si consiglia Node.js v18.x o superiore)
+* **Frontend:** React 19, Next.js 15 (richiede Node.js 20 o superiore)
 * **Styling:** Tailwind CSS
 * **UI/UX:** Mobile-First Design. L'interfaccia è responsiva e utilizza un sistema avanzato di Modals (gestione z-index e blocco dello scroll) per garantire un'esperienza fluida.
 * **Contenuti:** Tutti i testi degli eventi, le schede scientifiche e i modificatori numerici sono statici e definiti a livello di codice, redatti sulla base della documentazione tecnica del sito. La scelta è deliberata: garantisce controllo scientifico sui contenuti, riproducibilità dell'esperienza e identità della sessione di gioco tra utenti diversi, requisito necessario per l'impiego del prototipo in un contesto di ricerca.
@@ -27,12 +27,11 @@ L'architettura del simulatore è volutamente consolidata per facilitare la rapid
 * **`/app/page.tsx`**: È il cuore pulsante dell'applicazione. Questo file centralizza l'intera logica del gioco (gestione degli stati, ciclo dei turni, calcolo del budget/salute ecosistemica, condizioni di *Game Over*), i contenuti narrativi (testi degli eventi, schede tecniche delle specie come *Petagnaea gussonei* e *Rhinolophus*) e l'integrazione dei componenti UI (modals, HUD, posizionamento degli elementi interattivi sulla mappa).
 * **`/app/layout.tsx`**: Gestisce il layout radice dell'applicazione Next.js, configurando i metadati globali (titolo, descrizione) e le impostazioni base della struttura HTML.
 * **`/app/globals.css`**: Contiene gli stili globali e l'inizializzazione di Tailwind CSS.
-* **`/lib/utils.ts`**: Contiene funzioni di utilità per la gestione dinamica delle classi CSS (es. la funzione `cn` per fondere le classi di Tailwind in modo condizionale senza conflitti).
 
 ---
 
 ## 🚀 Installazione e Avvio in Locale
-Per eseguire il simulatore localmente, assicurati di avere **Node.js** installato sul tuo sistema.
+Per eseguire il simulatore localmente, assicurati di avere **Node.js 20 o superiore** installato sul tuo sistema.
 
 1. **Clona il repository e installa le dipendenze:**
    ```bash
@@ -46,7 +45,7 @@ Per eseguire il simulatore localmente, assicurati di avere **Node.js** installat
    ```
    L'app sarà disponibile all'indirizzo `http://localhost:3000`.
 
-Il simulatore non richiede chiavi API né variabili d'ambiente per funzionare.
+Il simulatore non richiede chiavi API né variabili d'ambiente per funzionare: tutti i contenuti sono statici e definiti nel codice.
 
 ---
 
