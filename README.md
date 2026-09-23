@@ -5,6 +5,21 @@
 
 > **Versione di riferimento:** la build sottoposta a valutazione esperta nella sperimentazione con i docenti è taggata come [`v1.0-sperimentazione`](https://github.com/Aletoro98/custodi_del_flascio/tree/v1.0-sperimentazione). La demo online riflette invece sempre l'ultimo deploy.
 
+## 🇬🇧 In English
+*Custodi del Flascio* ("Guardians of the Flascio") is a web-based management serious game on biodiversity conservation, designed for the last two years of primary school. It was built as the case study of a Master's thesis in Digital Humanities at the University of Palermo.
+
+The player is the coordinator of the Natura 2000 site ITA070007 "Bosco del Flascio", in the Nebrodi Park (Sicily), and has to balance a limited budget against the health of the ecosystem over a seven-day cycle. Each day brings a real pressure taken from the site's official EU documentation (illegal grazing by feral pigs, riverbank alteration, poaching), and every response produces a daily report with its consequences. Overspending leads to bankruptcy, with the park authority placed under external administration; letting the ecosystem collapse is an ecological defeat. Scientific cards for four protected species sit on the map and hold the clues needed to solve the emergencies; if a species goes extinct, its card is locked.
+
+* **Stack:** React 19, Next.js 15, TypeScript, Tailwind CSS; mobile-first, responsive UI.
+* **Static content by design:** all events, species cards and numeric modifiers are hard-coded, so every research session played exactly the same game. No API keys or environment variables are needed.
+* **Evaluated build:** tag [`v1.0-sperimentazione`](https://github.com/Aletoro98/custodi_del_flascio/tree/v1.0-sperimentazione), used in the expert evaluation with teachers. The live demo always reflects the latest deploy.
+* **AI use:** environmental artwork and UI visuals were generated with Google Gemini (Nano Banana 2); Google AI Studio was used as a coding assistant.
+* **Run locally:** Node.js 20+, then `npm install` and `npm run dev`. Lint with `npm run lint`.
+
+Full documentation in Italian below.
+
+---
+
 ## 📖 Il Progetto
 "Custodi del Flascio" è un Serious Game gestionale (Edutainment) sviluppato come caso di studio. L'obiettivo non è il semplice intrattenimento, ma l'apprendimento di concetti complessi legati alla biologia della conservazione attraverso il *learning by doing*.
 
@@ -16,7 +31,7 @@ Il giocatore veste i panni del Coordinatore del sito **Bosco del Flascio** (Rete
 * **Lore Integrata e Interattiva:** Le schede scientifiche di specie protette (es. *Petagnaea gussonei*, *Rhinolophus*, *Emys*) sono integrate nella mappa. Leggerle fornisce indizi vitali per risolvere le emergenze. Se una specie si estingue, la sua scheda diventa inaccessibile, creando un forte impatto emotivo.
 
 ## 💻 Stack Tecnologico
-* **Frontend:** React 19, Next.js 15 (richiede Node.js 20 o superiore)
+* **Frontend:** React 19, Next.js 15, TypeScript (richiede Node.js 20 o superiore)
 * **Styling:** Tailwind CSS
 * **UI/UX:** Mobile-First Design. L'interfaccia è responsiva e utilizza un sistema avanzato di Modals (gestione z-index e blocco dello scroll) per garantire un'esperienza fluida.
 * **Contenuti:** Tutti i testi degli eventi, le schede scientifiche e i modificatori numerici sono statici e definiti a livello di codice, redatti sulla base della documentazione tecnica del sito. La scelta è deliberata: garantisce controllo scientifico sui contenuti, riproducibilità dell'esperienza e identità della sessione di gioco tra utenti diversi, requisito necessario per l'impiego del prototipo in un contesto di ricerca.
@@ -44,6 +59,10 @@ Per eseguire il simulatore localmente, assicurati di avere **Node.js 20 o superi
    npm run dev
    ```
    L'app sarà disponibile all'indirizzo `http://localhost:3000`.
+3. **Controllo del codice (facoltativo):**
+   ```bash
+   npm run lint
+   ```
 
 Il simulatore non richiede chiavi API né variabili d'ambiente per funzionare: tutti i contenuti sono statici e definiti nel codice.
 
