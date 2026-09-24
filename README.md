@@ -15,6 +15,7 @@ The player is the coordinator of the Natura 2000 site ITA070007 "Bosco del Flasc
 * **Evaluated build:** tag [`v1.0-sperimentazione`](https://github.com/Aletoro98/custodi_del_flascio/tree/v1.0-sperimentazione), used in the expert evaluation with teachers. The live demo always reflects the latest deploy.
 * **AI use:** environmental artwork and UI visuals were generated with Google Gemini (Nano Banana 2); Google AI Studio was used as a coding assistant.
 * **Run locally:** Node.js 20+, then `npm install` and `npm run dev`. Lint with `npm run lint`.
+* * **Bilingual interface:** the game can be played in Italian or English; a flag button switches language at any time, and on first visit the language follows the browser. All texts live in `app/i18n.ts`. The evaluated build `v1.0-sperimentazione` is Italian-only.
 
 Full documentation in Italian below.
 
@@ -35,11 +36,14 @@ Il giocatore veste i panni del Coordinatore del sito **Bosco del Flascio** (Rete
 * **Styling:** Tailwind CSS
 * **UI/UX:** Mobile-First Design. L'interfaccia è responsiva e utilizza un sistema avanzato di Modals (gestione z-index e blocco dello scroll) per garantire un'esperienza fluida.
 * **Contenuti:** Tutti i testi degli eventi, le schede scientifiche e i modificatori numerici sono statici e definiti a livello di codice, redatti sulla base della documentazione tecnica del sito. La scelta è deliberata: garantisce controllo scientifico sui contenuti, riproducibilità dell'esperienza e identità della sessione di gioco tra utenti diversi, requisito necessario per l'impiego del prototipo in un contesto di ricerca.
+* * **Interfaccia bilingue:** il gioco è disponibile in italiano e in inglese. La lingua si cambia in qualsiasi momento con la bandierina; alla prima apertura viene scelta in base alla lingua del browser. La build sperimentata con i docenti (`v1.0-sperimentazione`) è solo in italiano.
 
 ## 🗂 Struttura del Progetto
 L'architettura del simulatore è volutamente consolidata per facilitare la rapida iterazione del prototipo. Il *core logic* e l'interfaccia utente (UI) risiedono principalmente all'interno della directory `/app`:
 
-* **`/app/page.tsx`**: È il cuore pulsante dell'applicazione. Questo file centralizza l'intera logica del gioco (gestione degli stati, ciclo dei turni, calcolo del budget/salute ecosistemica, condizioni di *Game Over*), i contenuti narrativi (testi degli eventi, schede tecniche delle specie come *Petagnaea gussonei* e *Rhinolophus*) e l'integrazione dei componenti UI (modals, HUD, posizionamento degli elementi interattivi sulla mappa).
+* **`/app/page.tsx`**: È il cuore pulsante dell'applicazione. Centralizza l'intera logica del gioco (gestione degli stati, ciclo dei turni, calcolo del budget/salute ecosistemica, condizioni di *Game Over*) e l'integrazione dei componenti UI (modals, HUD, posizionamento degli elementi interattivi sulla mappa).
+* **`/app/i18n.ts`**: Contiene tutti i contenuti testuali in italiano e in inglese (testi degli eventi, report giornalieri, schede tecniche delle specie come *Petagnaea gussonei* e *Rhinolophus*, esiti finali).
+* **`/app/LanguageToggle.tsx`**: Il pulsante con la bandierina per cambiare lingua.
 * **`/app/layout.tsx`**: Gestisce il layout radice dell'applicazione Next.js, configurando i metadati globali (titolo, descrizione) e le impostazioni base della struttura HTML.
 * **`/app/globals.css`**: Contiene gli stili globali e l'inizializzazione di Tailwind CSS.
 
